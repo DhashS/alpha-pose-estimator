@@ -1,0 +1,3 @@
+geometry_msgs/PoseStamped indata
+---
+string[2] outmsg

@@ -1,0 +1,4 @@
+<launch>
+  <node pkg="rssi_dir" type="rf_orientation.py" name="logger"/>
+  <node pkg="rssi_dir" type="RF_predict.py" name="predictor" output="screen"/>
+</launch>
