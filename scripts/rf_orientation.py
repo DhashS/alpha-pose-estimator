@@ -16,9 +16,9 @@ import rf_objs
 sock = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
 sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 fcntl.fcntl(sock, fcntl.F_SETFL, os.O_NONBLOCK)
-if os.path.exists("/home/dhash/research/ROS/src/rssi_dir/RSSI_sock"):
-    os.remove("/home/dhash/research/ROS/src/rssi_dir/RSSI_sock")
-sock.bind("/home/dhash/research/ROS/src/rssi_dir/RSSI_sock")
+if os.path.exists("../RSSI_sock"):
+    os.remove("../RSSI_sock")
+sock.bind("../RSSI_sock")
 sock.listen(1)
 conn = None
 cli = None
