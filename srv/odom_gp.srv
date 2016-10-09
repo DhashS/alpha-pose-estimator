@@ -1,3 +1,4 @@
 geometry_msgs/PoseStamped indata
 ---
-string[2] outmsg
+float64[] rssi
+float64 mse

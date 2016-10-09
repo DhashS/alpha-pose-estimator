@@ -1,3 +1,19 @@
+import rospy
+
+from std_msgs.msg import Header, String
+from sensor_msgs.msg import LaserScan
+from geometry_msgs.msg import PoseStamped, PoseWithCovarianceStamped, PoseArray, Pose, Point, Quaternion
+from nav_msgs.srv import GetMap
+
+import tf
+from tf import TransformListener
+from tf import TransformBroadcaster
+from tf.transformations import euler_from_quaternion, rotation_matrix, quaternion_from_matrix
+from random import gauss
+
+import math
+import time
+
 class RF_direction():
 
     def __init__(self):
@@ -5,7 +21,7 @@ class RF_direction():
         self.rssi = []
 
     def log_odom(self, msg):
-        self.odom.append(Log_odom_sample(msg=msg))
+        self.odoms.append(Log_odom_sample(msg=msg))
 
 
     def log_rssi(self, msg):
@@ -17,7 +33,8 @@ class Log_odom_sample():
         #self.nsec = msg.header.stamp.nsecs #TODO left pad
         # gets the heading 
         # TODO Time mgmt
-        self.sec = rospy.get_rostime().secs
+	self.original_msg = msg
+        self.sec = rospy.get_rostime()
         self.theta = euler_from_quaternion([msg.pose.orientation.x, msg.pose.orientation.y, msg.pose.orientation.z, msg.pose.orientation.w])[2]
 	self.hdg = self.theta
         # stores the pos
@@ -29,8 +46,9 @@ class Log_odom_sample():
 class Log_RSSI_sample():
         #time skew?
         def __init__(self, msg):
-            now = rospy.get_rostime()
-            self.sec = now.secs
+	    self.original_msg = msg
+            now = rospy.get_rostime() 
+            self.sec = now
             self.nsec = now.nsecs
             self.sigs = self.store_msgs(msg.data)
             self.closest_odom = None

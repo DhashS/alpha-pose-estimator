@@ -1,0 +1,2 @@
+set(rssi_dir_MESSAGE_FILES "")
+set(rssi_dir_SERVICE_FILES "/home/dhash/research/ROS/src/rssi_dir/srv/odom_gp.srv;/home/dhash/research/ROS/src/rssi_dir/srv/rssi_gp.srv;/home/dhash/research/ROS/src/rssi_dir/srv/compute.srv;/home/dhash/research/ROS/src/rssi_dir/srv/recv_data.srv")

@@ -47,16 +47,18 @@ find_package(catkin REQUIRED COMPONENTS
 ##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
 
 ## Generate messages in the 'msg' folder
-#add_message_files(
-#  FILES
-#  Rf_stamped.msg
-#)
+add_message_files(
+  FILES
+  Rf_stamped.msg
+)
 
 ## Generate services in the 'srv' folder
- add_service_files(
+add_service_files(
    FILES
    odom_gp.srv
    rssi_gp.srv
+   compute.srv
+   recv_data.srv
 #   Service2.srv
  )
 
